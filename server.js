@@ -18,6 +18,7 @@ mongoose.connect(process.env.DATABASE)
 app.set('views', './views');
 app.engine('.html', require('ejs').renderFile);
 app.use(express.static('./dist'));
+app.use(express.static('./src'));
 app.use(express.static('./bower_components'));
 // app.use('/ngFacebook', express.static('./node_modules/ng-facebook'));
 app.set('view engine', 'html');
