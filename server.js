@@ -12,8 +12,10 @@ let express       = require('express'),
     cookieParser  = require('cookie-parser');
 
 let app = express();
-
-mongoose.connect(process.env.DATABASE)
+require('./models/User');
+require('./config/passport');
+if (process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/appname-test');
+else mongoose.connect(process.env.DATABASE)
 
 app.set('views', './views');
 app.engine('.html', require('ejs').renderFile);
@@ -25,7 +27,7 @@ app.set('view options', {
   layout: false
 });
 
-app.use(logger('dev'));
+if(process.env.NODE_ENV !== 'test') app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -55,6 +57,7 @@ app.use(helmet.hidePoweredBy());
 let nosniff = require('dont-sniff-mimetype');
 app.use(nosniff());
 
+app.use('/api/v1/users', require('./routes/userRoutes'));
 app.get('/*', (req, res) => {
   res.render('index');
 });
@@ -72,7 +75,7 @@ app.use((req, res, next) => {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
-    console.log(err);
+    if(process.env.NODE_ENV !== 'test') console.log(err);
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -84,7 +87,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
-  console.log(err);
+  if(process.env.NODE_ENV !== 'test') console.log(err);
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
