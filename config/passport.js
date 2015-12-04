@@ -43,7 +43,7 @@ passport.use('local-signup', new LocalStrategy({
         let newUser = new User();
         newUser.local.email = email;
         newUser.primaryEmail = email;
-        newUser.setPassword(password, (err, hash) => {
+        newUser.createHash(password, (err, hash) => {
           if (err) return done(err);
           newUser.password = hash;
           newUser.save((err) => {
