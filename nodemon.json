@@ -1,0 +1,12 @@
+{
+	"ignore": [
+	"gulpfile.js",
+	"bower.json",
+	"package.json",
+	".gitignore",
+	".sass-cache",
+	"/dist",
+	"/src",
+	"/views"
+	]
+}

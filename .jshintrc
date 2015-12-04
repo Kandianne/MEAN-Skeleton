@@ -1,0 +1,18 @@
+{
+  "forin": true,
+  "freeze": true,
+  "undef": true,
+  "unused": true,
+  "immed": true,
+  "latedef": false,
+  "newcap": false,
+  "esnext": true,
+  "laxcomma": true,
+
+  // Environments
+  "node": true,
+  "globals": {
+    "angular": true,
+    "require": true
+  }
+}

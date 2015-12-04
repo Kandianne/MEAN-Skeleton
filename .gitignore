@@ -1,0 +1,6 @@
+/node_modules
+/bower_components
+/.sass-cache
+npm-debug.log
+.env
+.DS_Store
