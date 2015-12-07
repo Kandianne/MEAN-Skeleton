@@ -15,7 +15,7 @@ let app = express();
 require('./models/User');
 require('./config/passport');
 if (process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/appname-test');
-else mongoose.connect(process.env.DATABASE)
+else mongoose.connect(process.env.DATABASE);
 
 app.set('views', './views');
 app.engine('.html', require('ejs').renderFile);

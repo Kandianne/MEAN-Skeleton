@@ -42,7 +42,7 @@ gulp.task('scripts', function() {
 	.pipe(notify({message:"Minified JS, And Bundled."}));
 });
 
-gulp.task('jshint', function() {
+gulp.task('lint', function() {
 	return gulp.src(['./src/javascript/**/*.js', './server.js', './routes/**/*.js', './models/**/*.js'])
 	.pipe(jshint())
 	.pipe(jshint.reporter('jshint-stylish'));

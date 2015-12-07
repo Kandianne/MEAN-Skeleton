@@ -1,18 +1,19 @@
 "use strict";
-let express = require('express');
-let router = express.Router();
-let mongoose = require('mongoose');
-let passport = require('passport');
-let User = mongoose.model('User');
-let jwt = require('express-jwt');
-let jsonwebtoken = require('jsonwebtoken');
-let google = require('googleapis');
-let Twitter = require('node-twitter-api');
-let OAuth2 = google.auth.OAuth2;
-let plus = google.plus('v1');
-let TWITTER_CONNECT = {};
-let GOOGLE_CONNECT = {};
-let GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
+let express           = require('express'),
+    https             = require('https'),
+    router            = express.Router(),
+    mongoose          = require('mongoose'),
+    passport          = require('passport'),
+    User              = mongoose.model('User'),
+    uuid              = require('uuid'),
+    jwt               = require('express-jwt'),
+    google            = require('googleapis'),
+    Twitter           = require('node-twitter-api'),
+    OAuth2            = google.auth.OAuth2,
+    plus              = google.plus('v1'),
+    TWITTER_CONNECT   = {},
+    GOOGLE_CONNECT    = {},
+    GOOGLE_SCOPES     = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
 let auth = jwt({
   userProperty: 'payload',
   secret: process.env.AUTH_SECRET
@@ -26,12 +27,12 @@ let twitter = new Twitter({
 //#############################################
 //## LOCAL ####################################
 //#############################################
-router.post('/Register', passport.authenticate('local-signup'), (req, res, next) => {
+router.post('/Register', passport.authenticate('local-signup'), (req, res) => {
   res.send({
     token: req.tempUser.generateJWT()
   });
 });
-router.post('/Login', passport.authenticate('local-login'), (req, res, next) => {
+router.post('/Login', passport.authenticate('local-login'), (req, res) => {
   res.send({
     token: req.tempUser.generateJWT()
   });
@@ -121,7 +122,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {
   } else res.status(403).send('You are not authenticated.');
 });
 
-router.get('/connect/google', auth, (req, res, next) => {
+router.get('/connect/google', auth, (req, res) => {
   let oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_CONNECT_CALLBACK);
   let state = uuid.v4();
   GOOGLE_CONNECT[state] = {
@@ -280,5 +281,14 @@ router.put('/disconnect/:provider', auth, (req, res, next) => {
     }
   });
 });
+
+function Base64EncodeUrl(str) {
+  return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+}
+
+// function Base64DecodeUrl(str) {
+//   str = (str + '===').slice(0, str.length + (str.length % 4));
+//   return str.replace(/-/g, '+').replace(/_/g, '/');
+// }
 
 module.exports = router;

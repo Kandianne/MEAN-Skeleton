@@ -2,7 +2,7 @@
   "use strict";
   angular.module('app', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngMessages', 'ngFacebook'])
     .config(Config)
-		.run(fb)
+		.run(fb);
 
   function Config($stateProvider, $urlRouterProvider, $httpProvider, $urlMatcherFactoryProvider, $locationProvider, $facebookProvider) {
     $urlMatcherFactoryProvider.caseInsensitive(true);
@@ -15,11 +15,11 @@
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
-    $facebookProvider.setPermissions('email')
+    $facebookProvider.setPermissions('email');
     $facebookProvider.setAppId(838183259630461);
   }
 
-  function fb($rootScope) {
+  function fb() {
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;

@@ -52,14 +52,12 @@ let UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.createHash = function(password, cb) {
-  let user = this;
   let BCRYPT_COST = 12;
   if(process.env.NODE_ENV === 'test') BCRYPT_COST = 1;
   bcrypt.genSalt(BCRYPT_COST, (err, salt) => {
     if (err) return cb(err);
     bcrypt.hash(password, salt, (err, hash) => {
       if (err) return cb(err);
-      // user.local.password = hash;
       cb(null, hash);
     });
   });
