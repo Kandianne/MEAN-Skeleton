@@ -71,11 +71,11 @@ router.get('/auth/facebook',  passport.authenticate('facebook', {
 router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
   failureRedirect: '/Login'
 }), (req, res) => {
-  if (req.isAuthenticated()) {
+  // if (req.isAuthenticated()) {
     res.redirect('/?code=' + req.user.generateJWT());
-  } else {
-    res.status(403).send("You are not authenticated.");
-  }
+  // } else {
+    // res.status(403).send("You are not authenticated.");
+  // }
 });
 
 router.post('/connect/facebook/', auth, (req, res, next) => {
@@ -184,7 +184,6 @@ router.get('/auth/twitter', passport.authenticate('twitter'));
 router.get('/auth/twitter/callback', passport.authenticate('twitter', {
   failureRedirect: '/Login'
 }), (req, res) => {
-  console.log('success');
   if (req.isAuthenticated()) {
     res.redirect('/?code=' + req.user.generateJWT());
   } else res.status(403).send('You are not authenticated.');

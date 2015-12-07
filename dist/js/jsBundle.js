@@ -280,7 +280,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
     "use strict";
     angular.module('app').controller('HomeController', HomeController);
 
-    function HomeController($location, UserFactory) {
+    function HomeController($location, UserFactory, $window) {
         var vm = this;
         var params = $location.search();
         if (params.code) {
