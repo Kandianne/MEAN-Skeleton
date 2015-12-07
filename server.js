@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
-    if(process.env.NODE_ENV !== 'test') console.log(err);
+    console.log(err);
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -88,7 +88,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
-  if(process.env.NODE_ENV !== 'test') console.log(err);
+  console.log(err);
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

@@ -283,6 +283,21 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
 (function () {
     "use strict";
+    angular.module('app').controller('NavController', NavController);
+
+    function NavController(UserFactory, $state) {
+        var vm = this;
+        vm.status = UserFactory.status;
+
+        vm.logout = function () {
+            UserFactory.logout()
+            $state.go('Home');
+        };
+    }
+})();
+
+(function () {
+    "use strict";
     angular.module('app').controller('RegisterController', RegisterController);
 
     function RegisterController($state, UserFactory) {
@@ -340,7 +355,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function register(user) {
             var q = $q.defer();
-            $http.post('/api/Users/Register', user).then(function (res) {
+            $http.post('/api/v1/users/Register', user).then(function (res) {
                 setToken(res.data.token);
                 setUser();
                 q.resolve();
@@ -354,7 +369,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
                 password: user.password
             };
             var q = $q.defer();
-            $http.post('/api/Users/Login', u).then(function (res) {
+            $http.post('/api/v1/users/Login', u).then(function (res) {
                 setToken(res.data.token);
                 setUser();
                 q.resolve();
@@ -377,7 +392,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function getUser() {
             var q = $q.defer();
-            $http.get('/api/Users/profile').then(function (res) {
+            $http.get('/api/v1/users/profile').then(function (res) {
                 q.resolve(res.data);
             }, function () {
                 q.reject();
@@ -411,7 +426,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function connectFacebook(info) {
             var q = $q.defer();
-            $http.post('/api/Users/connect/facebook', info).then(function (res) {
+            $http.post('/api/v1/users/connect/facebook', info).then(function (res) {
                 setToken(res.data.token);
                 setUser();
                 q.resolve(res);
@@ -423,7 +438,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function connectTwitter() {
             var q = $q.defer();
-            $http.get('/api/Users/connect/twitter').then(function (res) {
+            $http.get('/api/v1/users/connect/twitter').then(function (res) {
                 console.log(res);
                 q.resolve(res.data.token);
             }, function (res) {
@@ -434,7 +449,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function connectGoogle() {
             var q = $q.defer();
-            $http.get('/api/Users/connect/google').then(function (res) {
+            $http.get('/api/v1/users/connect/google').then(function (res) {
                 q.resolve(res.data.url);
             }, function (err) {
                 console.log(err);
@@ -445,7 +460,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function connectLocal(user) {
             var q = $q.defer();
-            $http.post('/api/Users/connect/local', user).then(function (res) {
+            $http.post('/api/v1/users/connect/local', user).then(function (res) {
                 setToken(res.data.token);
                 setUser();
                 q.resolve();
@@ -458,7 +473,7 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
         function disconnectFromProvider(provider, pass) {
             var q = $q.defer();
-            $http.put('/api/Users/disconnect/' + provider, {
+            $http.put('/api/v1/users/disconnect/' + provider, {
                 password: pass
             }).then(function (res) {
                 setToken(res.data.token);
