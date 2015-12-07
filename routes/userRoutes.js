@@ -72,7 +72,7 @@ router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
   failureRedirect: '/Login'
 }), (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect('/Token/' + req.user.generateJWT());
+    res.redirect('/?code=' + req.user.generateJWT());
   } else {
     res.status(403).send("You are not authenticated.");
   }
@@ -118,7 +118,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/Login'
 }), (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect('/Token/' + req.user.generateJWT());
+    res.redirect('/?code=' + req.user.generateJWT());
   } else res.status(403).send('You are not authenticated.');
 });
 
@@ -184,8 +184,9 @@ router.get('/auth/twitter', passport.authenticate('twitter'));
 router.get('/auth/twitter/callback', passport.authenticate('twitter', {
   failureRedirect: '/Login'
 }), (req, res) => {
+  console.log('success');
   if (req.isAuthenticated()) {
-    res.redirect('/Token/' + req.user.generateJWT());
+    res.redirect('/?code=' + req.user.generateJWT());
   } else res.status(403).send('You are not authenticated.');
 });
 

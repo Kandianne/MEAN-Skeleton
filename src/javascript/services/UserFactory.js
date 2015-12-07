@@ -25,7 +25,7 @@
 
     function register(user) {
       var q = $q.defer();
-      $http.post('/api/Users/Register', user).then(function(res) {
+      $http.post('/api/v1/users/Register', user).then(function(res) {
         setToken(res.data.token);
         setUser();
         q.resolve();
@@ -39,7 +39,7 @@
         password: user.password
       };
       var q = $q.defer();
-      $http.post('/api/Users/Login', u).then(function(res) {
+      $http.post('/api/v1/users/Login', u).then(function(res) {
         setToken(res.data.token);
         setUser();
         q.resolve();
@@ -62,7 +62,7 @@
 
     function getUser() {
       var q = $q.defer();
-      $http.get('/api/Users/profile').then(function(res) {
+      $http.get('/api/v1/users/profile').then(function(res) {
         q.resolve(res.data);
       }, function() {
         q.reject();
@@ -96,7 +96,7 @@
 
     function connectFacebook(info) {
       var q = $q.defer();
-      $http.post('/api/Users/connect/facebook', info).then(function(res) {
+      $http.post('/api/v1/users/connect/facebook', info).then(function(res) {
         setToken(res.data.token);
         setUser();
         q.resolve(res);
@@ -108,7 +108,7 @@
 
     function connectTwitter() {
       var q = $q.defer();
-      $http.get('/api/Users/connect/twitter').then(function(res) {
+      $http.get('/api/v1/users/connect/twitter').then(function(res) {
         console.log(res);
         q.resolve(res.data.token);
       }, function(res) {
@@ -119,7 +119,7 @@
 
     function connectGoogle() {
       var q = $q.defer();
-      $http.get('/api/Users/connect/google').then(function(res) {
+      $http.get('/api/v1/users/connect/google').then(function(res) {
         q.resolve(res.data.url);
       }, function(err) {
         console.log(err);
@@ -130,7 +130,7 @@
 
     function connectLocal(user) {
       var q = $q.defer();
-      $http.post('/api/Users/connect/local', user).then(function(res) {
+      $http.post('/api/v1/users/connect/local', user).then(function(res) {
         setToken(res.data.token);
         setUser();
         q.resolve();
@@ -143,7 +143,7 @@
 
     function disconnectFromProvider(provider, pass) {
       var q = $q.defer();
-      $http.put('/api/Users/disconnect/' + provider, {password: pass}).then(function(res) {
+      $http.put('/api/v1/users/disconnect/' + provider, {password: pass}).then(function(res) {
         setToken(res.data.token);
         setUser();
         q.resolve();

@@ -66,4 +66,4 @@ gulp.task('watch', function(){
 	gulp.watch('./src/javascript/**/*.js', ['scripts']);
 });
 
-gulp.task('default', ['jshint', 'scripts', 'styles', 'minify-html', 'images'])
+gulp.task('default', ['lint', 'scripts', 'styles', 'minify-html', 'images'])
