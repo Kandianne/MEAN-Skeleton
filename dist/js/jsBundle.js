@@ -9,6 +9,10 @@
             url: '/',
             templateUrl: 'templates/home.html',
             controller: 'HomeController as vm'
+        }).state('Register', {
+            url: '/Register',
+            templateUrl: 'templates/register.html',
+            controller: 'RegisterController as vm'
         });
 
         $urlRouterProvider.otherwise('/');
@@ -274,6 +278,22 @@ angular.module('ngFacebook', []).provider('$facebook', function () {
 
     function HomeController() {
         var vm = this;
+    }
+})();
+
+(function () {
+    "use strict";
+    angular.module('app').controller('RegisterController', RegisterController);
+
+    function RegisterController($state, UserFactory) {
+        var vm = this;
+        vm.user = {};
+
+        vm.register = function () {
+            UserFactory.register(vm.user).then(function () {
+                $state.go('Home');
+            });
+        };
     }
 })();
 
