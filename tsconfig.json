@@ -47,7 +47,8 @@
         "typings/passport-twitter/passport-twitter.d.ts",
         "typings/passport/passport.d.ts",
         "typings/serve-static/serve-static.d.ts",
-        "typings/tsd.d.ts"
+        "typings/tsd.d.ts",
+        "typings/uuid/UUID.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true
