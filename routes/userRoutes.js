@@ -1,24 +1,26 @@
 "use strict";
-let express           = require('express'),
+const express         = require('express'),
     https             = require('https'),
-    router            = express.Router(),
     mongoose          = require('mongoose'),
     passport          = require('passport'),
-    User              = mongoose.model('User'),
     uuid              = require('uuid'),
     jwt               = require('express-jwt'),
     google            = require('googleapis'),
-    Twitter           = require('node-twitter-api'),
-    OAuth2            = google.auth.OAuth2,
-    plus              = google.plus('v1'),
-    TWITTER_CONNECT   = {},
-    GOOGLE_CONNECT    = {},
-    GOOGLE_SCOPES     = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
-let auth = jwt({
+    Twitter           = require('node-twitter-api');
+
+const router            = express.Router(),
+      User              = mongoose.model('User'),
+      OAuth2            = google.auth.OAuth2,
+      plus              = google.plus('v1'),
+      TWITTER_CONNECT   = {},
+      GOOGLE_CONNECT    = {},
+      GOOGLE_SCOPES     = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
+
+const auth = jwt({
   userProperty: 'payload',
   secret: process.env.AUTH_SECRET
 });
-let twitter = new Twitter({
+const twitter = new Twitter({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   callback: process.env.TWITTER_CONNECT_CALLBACK

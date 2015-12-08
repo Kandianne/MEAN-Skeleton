@@ -2,7 +2,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
-let express       = require('express'),
+const express       = require('express'),
     bodyParser    = require('body-parser'),
     helmet        = require('helmet'),
     session       = require('express-session'),
@@ -11,7 +11,7 @@ let express       = require('express'),
     logger        = require('morgan'),
     cookieParser  = require('cookie-parser');
 
-let app = express();
+const app = express();
 require('./models/User');
 require('./config/passport');
 if (process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/appname-test');
@@ -55,7 +55,7 @@ app.use(helmet.csp({
 app.use(helmet.xssFilter());
 app.use(helmet.xframe('deny'));
 app.use(helmet.hidePoweredBy());
-let nosniff = require('dont-sniff-mimetype');
+const nosniff = require('dont-sniff-mimetype');
 app.use(nosniff());
 
 app.use('/api/v1/users', require('./routes/userRoutes'));
@@ -65,7 +65,7 @@ app.get('/*', (req, res) => {
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  let err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
-    if(process.env.NODE_ENV !== 'test') console.log(err);
+    console.log(err);
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -88,7 +88,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
-  if(process.env.NODE_ENV !== 'test') console.log(err);
+  console.log(err);
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
