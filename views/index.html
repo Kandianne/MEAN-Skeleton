@@ -15,6 +15,8 @@
 
 <body>
   <md-toolbar layout ng-controller="NavController as nav" ng-cloak>
+    <span flex="5"></span>
+    <h4 ui-sref="Home">app-name</h4>
     <span flex></span>
     <div layout ng-show="nav.status._id">
       <md-button ng-click="nav.logout()">Logout</md-button>
