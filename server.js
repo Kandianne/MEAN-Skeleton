@@ -43,10 +43,10 @@ app.use(passport.session());
 app.use(helmet.csp({
   defaultSrc: ["'self'"],
   scriptSrc: ["'self'", '*.google-analytics.com', 'cdnjs.cloudflare.com', "'unsafe-inline'", "code.jquery.com", "ajax.googleapis.com", 'connect.facebook.net', 'api.twitter.com'],
-  styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', "ajax.googleapis.com", "cdnjs.cloudflare.com"],
+  styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', "ajax.googleapis.com", "cdnjs.cloudflare.com", "maxcdn.bootstrapcdn.com"],
   imgSrc: ["'self'", '*.google-analytics.com', 'data:', "www.facebook.com"],
   connectSrc: ["'self'", 'api.twitter.com'],
-  fontSrc: ['fonts.gstatic.com'],
+  fontSrc: ["maxcdn.bootstrapcdn.com"],
   objectSrc: [],
   mediaSrc: [],
   frameSrc: ["'self'", "static.ak.facebook.com", "s-static.ak.facebook.com", "www.facebook.com"]

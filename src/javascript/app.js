@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  angular.module('app', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngMessages', 'ngFacebook'])
+  angular.module('app', ['ui.router', 'ui.bootstrap', 'ngMessages', 'ngFacebook'])
     .config(Config)
 		.run(fb);
 
