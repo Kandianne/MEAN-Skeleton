@@ -1,0 +1,78 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "async/async.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "bcrypt/bcrypt.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "express/express.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "node/node.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "mime/mime.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "express-unless/express-unless.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "ejs/ejs.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "express-jwt/express-jwt.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "express-session/express-session.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "express-validator/express-validator.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "helmet/helmet.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "jsonwebtoken/jsonwebtoken.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "passport-facebook/passport-facebook.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "mongoose/mongoose.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "morgan/morgan.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "passport/passport.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "passport-google-oauth/passport-google-oauth.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "passport-twitter/passport-twitter.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "passport-local/passport-local.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    },
+    "uuid/UUID.d.ts": {
+      "commit": "17dd34132c2a1a4d6a8bf1816effcff3ec922034"
+    }
+  }
+}

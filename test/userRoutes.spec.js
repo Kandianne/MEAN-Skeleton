@@ -1,5 +1,5 @@
 "use strict";
-let mongoose  = require('mongoose'),
+const mongoose  = require('mongoose'),
     should    = require('should'),
     request   = require('supertest'),
     app       = require('../server'),
@@ -11,7 +11,7 @@ describe('User Routes', () => {
   describe('POST /Register', () => {
     describe('Invalid parameters', () => {
       it('no email - should respond with errors', (done) => {
-        let u = {password: 'secret'};
+        const u = {password: 'secret'};
         request(app)
         .post('/api/v1/Users/Register')
         .send(u)
@@ -19,7 +19,7 @@ describe('User Routes', () => {
         .end(done);
       });
       it('no password - should respond with errors', (done) => {
-        let u = { email: 'test@test.com'};
+        const u = { email: 'test@test.com'};
         request(app)
         .post('/api/v1/Users/Register')
         .send(u)
@@ -27,7 +27,7 @@ describe('User Routes', () => {
         .end(done);
       });
       it('email exists - should repond with errors', (done) => {
-        let u = { email: 'exists@test.com', password: 'secret' };
+        const u = { email: 'exists@test.com', password: 'secret' };
         request(app)
         .post('/api/v1/Users/Register')
         .send(u)
@@ -37,7 +37,7 @@ describe('User Routes', () => {
     });
     describe('valid parameters', () => {
       it('should register a new local user', (done) => {
-        let u = { email: 'test@test.com', password: 'secret' };
+        const u = { email: 'test@test.com', password: 'secret' };
         request(app)
         .post('/api/v1/Users/Register')
         .send(u)

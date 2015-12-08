@@ -1,0 +1,55 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**"
+    ],
+    "compileOnSave": true,
+    "buildOnSave": false,
+    "files": [
+        "bower_components/angular-ui-router/api/angular-ui-router.d.ts",
+        "routes/userRoutes.ts",
+        "server.ts",
+        "typings/async/async.d.ts",
+        "typings/bcrypt/bcrypt.d.ts",
+        "typings/body-parser/body-parser.d.ts",
+        "typings/cookie-parser/cookie-parser.d.ts",
+        "typings/ejs/ejs.d.ts",
+        "typings/express-jwt/express-jwt.d.ts",
+        "typings/express-session/express-session.d.ts",
+        "typings/express-unless/express-unless.d.ts",
+        "typings/express-validator/express-validator.d.ts",
+        "typings/express/express.d.ts",
+        "typings/helmet/helmet.d.ts",
+        "typings/jsonwebtoken/jsonwebtoken.d.ts",
+        "typings/mime/mime.d.ts",
+        "typings/mongoose/mongoose.d.ts",
+        "typings/morgan/morgan.d.ts",
+        "typings/node/node.d.ts",
+        "typings/passport-facebook/passport-facebook.d.ts",
+        "typings/passport-google-oauth/passport-google-oauth.d.ts",
+        "typings/passport-local/passport-local.d.ts",
+        "typings/passport-twitter/passport-twitter.d.ts",
+        "typings/passport/passport.d.ts",
+        "typings/serve-static/serve-static.d.ts",
+        "typings/tsd.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}
