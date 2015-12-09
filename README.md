@@ -20,5 +20,10 @@ This project comes with:
 	 - mongodb and mongose
 	 - helmet.js
 	 - bcrypt
+ - Testing
+   - Mocha
+   - Should
+   - Supertest
+   - Istanbul
 
 And whatever else I decide to throw in as the project moves forward.

@@ -55,8 +55,10 @@ UserSchema.methods.createHash = function(password, cb) {
   let BCRYPT_COST = 12;
   if(process.env.NODE_ENV === 'test') BCRYPT_COST = 1;
   bcrypt.genSalt(BCRYPT_COST, (err, salt) => {
+    /* istanbul ignore next */ 
     if (err) return cb(err);
     bcrypt.hash(password, salt, (err, hash) => {
+      /* istanbul ignore next */
       if (err) return cb(err);
       cb(null, hash);
     });
@@ -65,6 +67,7 @@ UserSchema.methods.createHash = function(password, cb) {
 
 UserSchema.methods.validatePassword = function(password, hash, cb) {
   bcrypt.compare(password, hash, (err, isMatch) => {
+    /* istanbul ignore next */
     if (err) return cb(err);
     cb(null, isMatch);
   });

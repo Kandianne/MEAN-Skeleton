@@ -44,6 +44,7 @@ router.post('/connect/local', auth, (req, res, next) => {
   User.findOne({
     'local.email': req.body.email
   }).exec((err, user) => {
+    /* istanbul ignore next */
     if(err) return next(err);
     if(user) return next({err: `User already found with the email: ${req.body.email}.`, custom: true});
   });
@@ -53,8 +54,10 @@ router.post('/connect/local', auth, (req, res, next) => {
     user.local.email = req.body.email;
     user.primaryEmail = req.body.email;
     user.setPassword(req.body.password, (err) => {
+      /* istanbul ignore next */
       if (err) return next(err);
       user.save((err) => {
+        /* istanbul ignore next */ 
         if (err) return next(err);
         res.send({
           token: user.generateJWT()
@@ -67,9 +70,11 @@ router.post('/connect/local', auth, (req, res, next) => {
 //#############################################
 //## FACEBOOK #################################
 //#############################################
+/* istanbul ignore next */
 router.get('/auth/facebook',  passport.authenticate('facebook', {
   scope: ['email']
 }));
+/* istanbul ignore next */
 router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
   failureRedirect: '/Login'
 }), (req, res) => {
@@ -79,7 +84,7 @@ router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
     // res.status(403).send("You are not authenticated.");
   // }
 });
-
+/* istanbul ignore next */
 router.post('/connect/facebook/', auth, (req, res, next) => {
   https.get(`https://graph.facebook.com/v2.5/me?access_token=${req.body.accessToken}&format=json&method=get&fields=email%2Cname%2Cid%2Cgender%2Clink&pretty=0&suppress_http_code=1`, (response) => {
     response.on('data', (d) => {
@@ -113,9 +118,11 @@ router.post('/connect/facebook/', auth, (req, res, next) => {
 //#############################################
 //## GOOGLE ###################################
 //#############################################
+/* istanbul ignore next */
 router.get('/auth/google', passport.authenticate('google', {
   scope: GOOGLE_SCOPES.join(" ")
 }));
+/* istanbul ignore next */
 router.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/Login'
 }), (req, res) => {
@@ -123,7 +130,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {
     res.redirect('/?code=' + req.user.generateJWT());
   } else res.status(403).send('You are not authenticated.');
 });
-
+/* istanbul ignore next */
 router.get('/connect/google', auth, (req, res) => {
   let oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_CONNECT_CALLBACK);
   let state = uuid.v4();
@@ -141,6 +148,7 @@ router.get('/connect/google', auth, (req, res) => {
     url: url
   });
 });
+/* istanbul ignore next */
 router.get('/connect/google/callback', (req, res, next) => {
   let oauth2Client = new OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_CONNECT_CALLBACK);
   let code = JSON.parse(req.query.state).security_code;
@@ -182,6 +190,7 @@ router.get('/connect/google/callback', (req, res, next) => {
 //#############################################
 //## TWITTER ##################################
 //#############################################
+/* istanbul ignore next */
 router.get('/auth/twitter', passport.authenticate('twitter'));
 router.get('/auth/twitter/callback', passport.authenticate('twitter', {
   failureRedirect: '/Login'
@@ -192,6 +201,7 @@ router.get('/auth/twitter/callback', passport.authenticate('twitter', {
 });
 
 //Twitter authorization routes
+/* istanbul ignore next */
 router.get('/connect/twitter', auth, (req, res, next) => {
   twitter.getRequestToken((err, requestToken, requestSecret) => {
     if (err)
@@ -207,6 +217,7 @@ router.get('/connect/twitter', auth, (req, res, next) => {
     }
   });
 });
+/* istanbul ignore next */
 router.get('/access-token', (req, res, next) => {
   let requestToken = req.query.oauth_token;
   let verifier = req.query.oauth_verifier;
@@ -242,6 +253,7 @@ router.get('/access-token', (req, res, next) => {
 //#############################################
 //## DISCONNECT ###############################
 //#############################################
+/* istanbul ignore next */
 router.put('/disconnect/:provider', auth, (req, res, next) => {
   let provider = req.params.provider;
   User.findOne({

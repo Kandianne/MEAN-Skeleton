@@ -8,10 +8,12 @@ let mongoose = require('mongoose');
 let User = mongoose.model('User');
 
 passport.serializeUser((user, done) => {
+  /* istanbul ignore next */
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
+  /* istanbul ignore next */
   User.findById(id, (err, user) => {
     done(err, user);
   });
@@ -31,6 +33,7 @@ passport.use('local-signup', new LocalStrategy({
     User.findOne({
       'local.email': email
     }, (err, user) => {
+      /* istanbul ignore next */
       if (err)
         return done(err);
       if (user) {
@@ -44,9 +47,11 @@ passport.use('local-signup', new LocalStrategy({
         newUser.local.email = email;
         newUser.primaryEmail = email;
         newUser.createHash(password, (err, hash) => {
+          /* istanbul ignore next */
           if (err) return done(err);
           newUser.password = hash;
           newUser.save((err) => {
+            /* istanbul ignore next */
             if (err) return done(err);
             req.tempUser = newUser;
             return done(null, newUser);
@@ -69,6 +74,7 @@ passport.use('local-login', new LocalStrategy({
     User.findOne({
       'local.email': email
     }, (err, user) => {
+      /* istanbul ignore next */
       if (err) return done(err);
       if (!user) return done({
         err: `A user with that email does not exist.`,
@@ -79,6 +85,7 @@ passport.use('local-login', new LocalStrategy({
         custom: true
       })
       user.validatePassword(password, user.local.password, (err, isMatch) => {
+        /* istanbul ignore next */
         if (err) return done(err);
         if (!isMatch) return done({
           err: `Incorrect email and password combination.`,
@@ -95,6 +102,7 @@ passport.use('local-login', new LocalStrategy({
 // =========================================================================
 // FACEBOOK ================================================================
 // =========================================================================
+/* istanbul ignore next */
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
@@ -140,6 +148,7 @@ passport.use(new FacebookStrategy({
 // =========================================================================
 // TWITTER =================================================================
 // =========================================================================
+/* istanbul ignore next */
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
@@ -179,6 +188,7 @@ passport.use(new TwitterStrategy({
 // =========================================================================
 // GOOGLE ==================================================================
 // =========================================================================
+/* istanbul ignore next */
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
