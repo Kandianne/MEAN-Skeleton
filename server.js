@@ -2,7 +2,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
-const express       = require('express'),
+const express     = require('express'),
     bodyParser    = require('body-parser'),
     helmet        = require('helmet'),
     session       = require('express-session'),
@@ -17,13 +17,12 @@ require('./config/passport');
 if (process.env.NODE_ENV === 'test') mongoose.connect('mongodb://localhost/appname-test');
 else mongoose.connect(process.env.DATABASE);
 
-app.set('views', './views');
-app.engine('.html', require('ejs').renderFile);
 app.use(express.static('./dist'));
 app.use(express.static('./src'));
 app.use(express.static('./bower_components'));
 // app.use('/ngFacebook', express.static('./node_modules/ng-facebook'));
-app.set('view engine', 'html');
+app.set('views', './views');
+app.set('view engine', 'jade');
 app.set('view options', {
   layout: false
 });
